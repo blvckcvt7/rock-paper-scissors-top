@@ -1,5 +1,8 @@
 'use strict';
 
+let computerScore = 0;
+let humanScore = 0;
+
 function getComputerChoice() {
   let num = Math.floor(Math.random() * 3 + 1);
 
@@ -19,4 +22,4 @@ function getHumanChoice() {
   return choice.toLowerCase();
 }
 
-console.log(getHumanChoice());
+// console.log(getHumanChoice());
