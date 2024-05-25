@@ -1,5 +1,7 @@
 'use strict';
 
+// Get the computer choice
+
 function getComputerChoice() {
   let num = Math.floor(Math.random() * 3 + 1);
 
@@ -12,18 +14,21 @@ function getComputerChoice() {
   }
 }
 
-// console.log(getComputerChoice());
+// Get the human choice
 
 function getHumanChoice() {
   let choice = prompt('Select one: rock, paper, scissors');
   return choice.toLowerCase();
 }
 
-// console.log(getHumanChoice());
+// Function that starts the game upon being called.
 
 function playGame() {
   let computerScore = 0;
   let humanScore = 0;
+
+  // Function to play one round of the game
+
   function playRound(computerChoice, humanChoice) {
     computerChoice = getComputerChoice();
     humanChoice = getHumanChoice();
@@ -44,6 +49,8 @@ function playGame() {
       return `Human wins! ${humanChoice} beats ${computerChoice}.`;
     }
   }
+  // Loop to play 5 rounds of the game
+
   for (let i = 0; i < 5; i++) {
     console.log(playRound());
   }
