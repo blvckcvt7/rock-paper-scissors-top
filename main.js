@@ -45,44 +45,34 @@ function playRound(computerChoice, humanChoice) {
   }
 }
 
-rockButton.addEventListener('click', () => {
-  if (computerScore < 5 && humanScore < 5) {
-    scoreDiv.textContent = `${playRound(
-      getComputerChoice(),
-      'rock'
-    )} | User Score: ${humanScore} | 
-              Computer Score ${computerScore}`;
-  } else if (computerScore >= 5) {
-    scoreDiv.textContent = `The computer wins!`;
+function checkWinner() {
+  if (computerScore >= 5) {
+    scoreDiv.textContent = 'Computer wins!';
+    return true;
   } else if (humanScore >= 5) {
-    scoreDiv.textContent = 'The user wins!';
+    scoreDiv.textContent = 'Human user wins!';
+    return true;
   }
-});
+  return false;
+}
 
+function handleClick(humanChoice) {
+  if (!checkWinner()) {
+    scoreDiv.textContent = `${playRound(
+      getComputerChoice(),
+      humanChoice
+    )} | Human
+    score: ${humanScore} | Computer Score: ${computerScore}`;
+    checkWinner();
+  }
+}
+
+rockButton.addEventListener('click', () => {
+  handleClick('rock');
+});
 paperButton.addEventListener('click', () => {
-  if (computerScore < 5 && humanScore < 5) {
-    scoreDiv.textContent = `${playRound(
-      getComputerChoice(),
-      'paper'
-    )} | User Score: ${humanScore} | 
-              Computer Score ${computerScore}`;
-  } else if (computerScore === 5) {
-    scoreDiv.textContent = `The computer wins!`;
-  } else if (humanScore === 5) {
-    scoreDiv.textContent = 'The user wins!';
-  }
+  handleClick('paper');
 });
-
 scissorsButton.addEventListener('click', () => {
-  if (computerScore < 5 && humanScore < 5) {
-    scoreDiv.textContent = `${playRound(
-      getComputerChoice(),
-      'scissors'
-    )} | User Score: ${humanScore} | 
-              Computer Score ${computerScore}`;
-  } else if (computerScore === 5) {
-    scoreDiv.textContent = `The computer wins!`;
-  } else if (humanScore === 5) {
-    scoreDiv.textContent = 'The user wins!';
-  }
+  handleClick('scissors');
 });
