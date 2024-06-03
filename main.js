@@ -16,6 +16,13 @@ function getComputerChoice() {
 //   let choice = prompt('Select one: rock, paper, scissors');
 //   return choice.toLowerCase();
 // }
+let rockButton = document.querySelector('.rock-button');
+let paperButton = document.querySelector('.paper-button');
+let scissorsButton = document.querySelector('.scissors-button');
+let body = document.querySelector('body');
+
+let scoreDiv = document.createElement('div');
+body.appendChild(scoreDiv);
 
 let computerScore = 0;
 let humanScore = 0;
@@ -38,38 +45,44 @@ function playRound(computerChoice, humanChoice) {
   }
 }
 
-let rockButton = document.querySelector('.rock-button');
-let paperButton = document.querySelector('.paper-button');
-let scissorsButton = document.querySelector('.scissors-button');
-let body = document.querySelector('body');
-
-let scoreDiv = document.createElement('div');
-body.appendChild(scoreDiv);
-
-function tracking() {
-  rockButton.addEventListener('click', () => {
+rockButton.addEventListener('click', () => {
+  if (computerScore < 5 && humanScore < 5) {
     scoreDiv.textContent = `${playRound(
       getComputerChoice(),
       'rock'
     )} | User Score: ${humanScore} | 
-    Computer Score ${computerScore}`;
-  });
+              Computer Score ${computerScore}`;
+  } else if (computerScore >= 5) {
+    scoreDiv.textContent = `The computer wins!`;
+  } else if (humanScore >= 5) {
+    scoreDiv.textContent = 'The user wins!';
+  }
+});
 
-  paperButton.addEventListener('click', () => {
+paperButton.addEventListener('click', () => {
+  if (computerScore < 5 && humanScore < 5) {
     scoreDiv.textContent = `${playRound(
       getComputerChoice(),
       'paper'
     )} | User Score: ${humanScore} | 
-    Computer Score ${computerScore}`;
-  });
+              Computer Score ${computerScore}`;
+  } else if (computerScore === 5) {
+    scoreDiv.textContent = `The computer wins!`;
+  } else if (humanScore === 5) {
+    scoreDiv.textContent = 'The user wins!';
+  }
+});
 
-  scissorsButton.addEventListener('click', () => {
+scissorsButton.addEventListener('click', () => {
+  if (computerScore < 5 && humanScore < 5) {
     scoreDiv.textContent = `${playRound(
       getComputerChoice(),
       'scissors'
     )} | User Score: ${humanScore} | 
-    Computer Score ${computerScore}`;
-  });
-}
-
-tracking();
+              Computer Score ${computerScore}`;
+  } else if (computerScore === 5) {
+    scoreDiv.textContent = `The computer wins!`;
+  } else if (humanScore === 5) {
+    scoreDiv.textContent = 'The user wins!';
+  }
+});
